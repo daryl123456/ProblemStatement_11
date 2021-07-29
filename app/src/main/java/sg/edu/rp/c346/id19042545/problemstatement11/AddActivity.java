@@ -45,7 +45,8 @@ public class AddActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddActivity.this,
                         ScheduledNotificationReceiver.class);
 
-                intent.putExtra("DATA",new Tasks(name,desc));
+                intent.putExtra("name",name);
+                intent.putExtra("desc",desc);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(
                         AddActivity.this, reqCode,
                         intent, PendingIntent.FLAG_CANCEL_CURRENT);
