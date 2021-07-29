@@ -29,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COLUMN_DESCRIPTION + " TEXT ) ";
         db.execSQL(createNoteTableSql);
         Log.i("info", "Created tables");
+        //dummy data
         ContentValues values1 = new ContentValues();
         values1.put(COLUMN_NAME, "Buy Milk");
         values1.put(COLUMN_DESCRIPTION, "Low Fat");
