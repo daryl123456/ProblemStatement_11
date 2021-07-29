@@ -2,15 +2,21 @@ package sg.edu.rp.c346.id19042545.problemstatement11;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Calendar;
+
 public class AddActivity extends AppCompatActivity {
     Button btnAdd, btnCancel;
     EditText etName, etDesc, etSec;
+    int reqCode = 12345;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,22 @@ public class AddActivity extends AppCompatActivity {
                 String desc = String.valueOf(etDesc.getText());
                 db.insertTask(name, desc);
                 db.close();
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.SECOND, Integer.parseInt(etSec.getText().toString()));
+
+                Intent intent = new Intent(AddActivity.this,
+                        ScheduledNotificationReceiver.class);
+
+                intent.putExtra("DATA",new Tasks(name,desc));
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                        AddActivity.this, reqCode,
+                        intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager am = (AlarmManager)
+                        getSystemService(Activity.ALARM_SERVICE);
+                am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                        pendingIntent);
+
                 Intent i =new Intent(AddActivity.this, MainActivity.class);
                 startActivity(i);
             }

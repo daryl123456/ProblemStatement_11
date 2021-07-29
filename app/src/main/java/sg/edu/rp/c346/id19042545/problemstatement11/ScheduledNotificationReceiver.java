@@ -20,8 +20,7 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Bundle args = intent.getBundleExtra("DATA");
-        Tasks newObj = (Tasks) args.getSerializable("objsTask");
+        Tasks task = (Tasks) intent.getSerializableExtra("DATA");
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel("default","Default Channel",NotificationManager.IMPORTANCE_DEFAULT);
@@ -35,8 +34,8 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default");
-        builder.setContentTitle(newObj.getName());
-        builder.setContentText(newObj.getDescription());
+        builder.setContentTitle(task.getName());
+        builder.setContentText(task.getDescription());
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
         builder.setAutoCancel(true);
