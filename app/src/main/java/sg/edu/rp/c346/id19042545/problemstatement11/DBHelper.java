@@ -50,9 +50,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<String> getItemsOfTasks() {
+    public ArrayList<Tasks> getItemsOfTasks() {
         // Create an ArrayList that holds String objects
-        ArrayList<String> tasks = new ArrayList<String>();
+        ArrayList<Tasks> tasks = new ArrayList<>();
         // Select all the tasks' description
         String selectQuery = "SELECT " + COLUMN_NAME + COLUMN_DESCRIPTION
                 + " FROM " + TABLE_NOTE;
@@ -74,8 +74,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 //  getString(0) retrieves first column data
                 //  getString(1) return second column data
                 //  getInt(0) if data is an integer value
-                tasks.add(cursor.getString(0));
-                tasks.add(cursor.getString(1));
+                String name = cursor.getString(0);
+                String desc = cursor.getString(1);
+                Tasks task =new Tasks(name,desc);
+                tasks.add(task);
+
+
             } while (cursor.moveToNext());
         }
         // Close connection
