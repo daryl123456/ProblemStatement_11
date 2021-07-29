@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //DBHelper Insert new notes
-    public long insertTask (String name, String description, String time) {
+    public long insertTask (String name, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
