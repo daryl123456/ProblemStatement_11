@@ -29,7 +29,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COLUMN_DESCRIPTION + " TEXT ) ";
         db.execSQL(createNoteTableSql);
         Log.i("info", "Created tables");
-
+        ContentValues values1 = new ContentValues();
+        values1.put(COLUMN_NAME, "Buy Milk");
+        values1.put(COLUMN_DESCRIPTION, "Low Fat");
+        db.insert(TABLE_NOTE, null, values1);
+        ContentValues values2 = new ContentValues();
+        values2.put(COLUMN_NAME, "Post letters");
+        values2.put(COLUMN_DESCRIPTION, "Get stamps from car");
+        db.insert(TABLE_NOTE, null, values2);
     }
 
     @Override
@@ -54,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Create an ArrayList that holds String objects
         ArrayList<Tasks> tasks = new ArrayList<>();
         // Select all the tasks' description
-        String selectQuery = "SELECT " + COLUMN_NAME + COLUMN_DESCRIPTION
+        String selectQuery = "SELECT " + COLUMN_NAME+"," + COLUMN_DESCRIPTION
                 + " FROM " + TABLE_NOTE;
 
 

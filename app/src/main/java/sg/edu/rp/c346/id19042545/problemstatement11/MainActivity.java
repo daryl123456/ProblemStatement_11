@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         al = new ArrayList<>();
         al = dbh.getItemsOfTasks();
         dbh.close();
+        aa = new TaskAdapter(this, R.layout.row, al);
+        lv.setAdapter(aa);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,5 +44,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        DBHelper db = new DBHelper(MainActivity.this);
+        al.clear();
+        al.addAll(db.getItemsOfTasks());
+        db.close();
+        aa.notifyDataSetChanged();
     }
 }
