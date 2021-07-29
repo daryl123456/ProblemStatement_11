@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat;
 
 public class ScheduledNotificationReceiver extends BroadcastReceiver {
     int reqCode = 12345;
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -31,15 +31,14 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
         PendingIntent pIntent =  PendingIntent.getActivity(context,reqCode,i,PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default");
-        builder.setContentTitle(newObj.getName());
-        builder.setContentText(newObj.getDescription());
+        builder.setContentTitle("TaskManagerReminder");
+        builder.setContentText("Post letters");
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
         builder.setAutoCancel(true);
 
         Notification n = builder.build();
         notificationManager.notify(123,n);
-
 
     }
 }
