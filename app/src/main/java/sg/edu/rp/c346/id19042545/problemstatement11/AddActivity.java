@@ -36,6 +36,8 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 db.insertTask(name, desc, sec);
                 db.close();
+                Intent i =new Intent(AddActivity.this, MainActivity.class);
+                startActivity(i);
             }
         });
 
