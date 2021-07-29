@@ -15,7 +15,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_NOTE = "tasks";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_DESCRIPTION = "Description";
-    private static final String COLUMN_TIME = "Time";
 
     //DBHelper constructor
     public DBHelper(Context context) {
@@ -27,8 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createNoteTableSql = "CREATE TABLE " + TABLE_NOTE + "("
                 + COLUMN_NAME+ " TEXT,"
-                + COLUMN_DESCRIPTION+ " TEXT,"
-                + COLUMN_TIME + " TEXT ) ";
+                + COLUMN_DESCRIPTION + " TEXT ) ";
         db.execSQL(createNoteTableSql);
         Log.i("info", "Created tables");
 
@@ -46,7 +44,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_DESCRIPTION, description);
-        values.put(COLUMN_TIME, time);
         long result = db.insert(TABLE_NOTE, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
@@ -57,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Create an ArrayList that holds String objects
         ArrayList<String> tasks = new ArrayList<String>();
         // Select all the tasks' description
-        String selectQuery = "SELECT " + COLUMN_NAME + COLUMN_DESCRIPTION + COLUMN_TIME
+        String selectQuery = "SELECT " + COLUMN_NAME + COLUMN_DESCRIPTION
                 + " FROM " + TABLE_NOTE;
 
 
@@ -78,6 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 //  getString(1) return second column data
                 //  getInt(0) if data is an integer value
                 tasks.add(cursor.getString(0));
+                tasks.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
         // Close connection

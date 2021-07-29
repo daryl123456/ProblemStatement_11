@@ -5,12 +5,10 @@ import java.io.Serializable;
 public class Tasks  implements Serializable {
     private String name;
     private String description;
-    private int time;
 
-    public Tasks(String name, String description, int time) {
+    public Tasks(String name, String description) {
         this.name = name;
         this.description = description;
-        this.time = time;
     }
 
     public String getName() {
@@ -27,13 +25,5 @@ public class Tasks  implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
     }
 }
