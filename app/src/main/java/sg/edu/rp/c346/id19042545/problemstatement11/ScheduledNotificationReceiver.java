@@ -14,9 +14,10 @@ import androidx.core.app.NotificationCompat;
 
 public class ScheduledNotificationReceiver extends BroadcastReceiver {
     int reqCode = 12345;
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
+
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Bundle args = intent.getBundleExtra("DATA");
@@ -27,8 +28,11 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
             channel.setDescription("this is default notification");
             notificationManager.createNotificationChannel(channel);
         }
+
+
         Intent i = new Intent(context,MainActivity.class);
         PendingIntent pIntent =  PendingIntent.getActivity(context,reqCode,i,PendingIntent.FLAG_CANCEL_CURRENT);
+
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default");
         builder.setContentTitle(newObj.getName());
@@ -39,7 +43,6 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
 
         Notification n = builder.build();
         notificationManager.notify(123,n);
-
 
     }
 }
