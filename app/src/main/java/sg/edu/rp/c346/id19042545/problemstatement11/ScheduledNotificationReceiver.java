@@ -14,8 +14,7 @@ import androidx.core.app.NotificationCompat;
 
 public class ScheduledNotificationReceiver extends BroadcastReceiver {
     int reqCode = 12345;
-
-
+    
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
