@@ -32,7 +32,7 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
         PendingIntent pIntent =  PendingIntent.getActivity(context,reqCode,i,PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default");
-        builder.setContentTitle(newObj.getTitle());
+        builder.setContentTitle(newObj.getName());
         builder.setContentText(newObj.getDescription());
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
