@@ -25,16 +25,13 @@ public class AddActivity extends AppCompatActivity {
 
         DBHelper db = new DBHelper(AddActivity.this);
 
-        String name = String.valueOf(etName.getText());
-        String desc = String.valueOf(etDesc.getText());
-        String sec = String.valueOf(etSec.getText());
-
-
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.insertTask(name, desc, sec);
+                String name = String.valueOf(etName.getText());
+                String desc = String.valueOf(etDesc.getText());
+                db.insertTask(name, desc);
                 db.close();
                 Intent i =new Intent(AddActivity.this, MainActivity.class);
                 startActivity(i);
